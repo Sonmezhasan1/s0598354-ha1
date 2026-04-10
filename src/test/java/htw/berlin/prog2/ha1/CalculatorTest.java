@@ -106,5 +106,41 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    //Teilaufgabe 2 nr 1
+    @Test
+    @DisplayName("sollte nichts tuen ohne eine Operation auszuwahlen")
+    void testErgebnisOhneOperation(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        String expected = "7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+    //Teilaufgabe 2 nr 2
+    @Test
+    @DisplayName("soll nach einer Wurzel operation noch eine gespeicherte addition ausführen")
+    void testUnaryNachBinaryOperation(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("√");
+        calc.pressEqualsKey();
+
+        String expexted = "7";
+        String actual = calc.readScreen();
+
+        assertEquals(expexted,actual);
+
+    }
 }
+
+
+
 
