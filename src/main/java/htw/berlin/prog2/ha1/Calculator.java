@@ -72,8 +72,10 @@ public class Calculator {
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
+        /* Bug fix 2 für soll nach einer Wurzel operation noch eine gespeicherte addition ausführen
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+         */
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
@@ -118,6 +120,7 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+        if(latestOperation.isEmpty()) return; //Bug fix 1 für sollte nichts tuen ohne eine Operation auszuwahlen
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
